@@ -1,0 +1,32 @@
+{
+  "name": "corp-check-cli",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "build": "node_modules/.bin/tsc",
+    "build:watch": "node_modules/.bin/tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaystack/corp-check-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaystack/corp-check-cli/issues"
+  },
+  "homepage": "https://github.com/jaystack/corp-check-cli#readme",
+  "devDependencies": {
+    "@types/node": "^6.0.88",
+    "typescript": "^2.5.2"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
+    "winston": "^2.3.1"
+  },
+  "bin": {
+    "corp-check": "./lib/index.js"
+  }
+}
