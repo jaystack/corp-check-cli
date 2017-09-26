@@ -57,13 +57,27 @@ commander
 
       if (data.result) {
         if (command.V || data.result.qualification === 'REJECTED') {
-          for (const evaluation of data.result.evaluations) {
-            console.log('\t -', evaluation.description);
-            for (const log of evaluation.logs) {
-              console.log('\t\t -', log.type, ' - ', log.message);
-              logger.log('debug', JSON.stringify(log.meta));
+          const writeLogs = node => {
+            let isModuleNameDisplayed = false;
+            for (const evaluation of node.evaluations) {
+              if (command.V || evaluation.logs.length) {
+                if (!isModuleNameDisplayed) console.log(`  ${node.nodeName}`);
+                isModuleNameDisplayed = true;
+                if (evaluation.logs.length)
+                  console.log(`\t${evaluation.description}: ${evaluation.logs.map(l => l.message).join(', ')}`);
+                else console.log(`\t${evaluation.description}`);
+                for (const log of evaluation.logs) {
+                  logger.log('debug', JSON.stringify(log.meta));
+                }
+              }
             }
-          }
+
+            for (const dependency of node.dependencies) {
+              writeLogs(dependency);
+            }
+          };
+
+          writeLogs(data.result.rootEvaluation);
         }
 
         switch (data.result.qualification) {
