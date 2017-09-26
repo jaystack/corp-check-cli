@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import { WEBSITEURL, PACKAGE_NAME_REGEX } from './constants';
+import { WEBSITEURL, NPM_PACKAGE_NAME_PATTERN } from './constants';
 import * as commander from 'commander';
-var packageJson = require('../package.json');
+const packageJson = require('../package.json');
 
 import { validate_module, validate_package } from './validation';
-import { resolvePackagePath } from './resolvePath';
+import { resolvePackagePath, resolveRuleSetPath } from './resolvePath';
 import { logger } from './logger';
 
 commander.version(packageJson.version);
@@ -14,19 +14,40 @@ commander
   .command('validation [packagePath]')
   .description('corp-check-cli')
   .option('--npm <package>', 'npm package - name[@version]')
+  .option('--prod', 'production build')
+  .option('--force, -f', 'force validation')
+  .option('--verbose, -v', 'force validation')
+  .option('--rule-set <ruleSetJson>', 'validation rule set default: ./corp-check-rules.json')
   .option('--log-level <logLevel>', 'winston log level')
   .action(async (packagePath, command) => {
     try {
       logger.level = command.logLevel || 'warn';
-      
+
+      let ruleSet = undefined;
+      try {
+        const ruleSetPath = resolveRuleSetPath(command.ruleSet || packagePath || '.');
+        logger.log('debug', ruleSetPath);
+        ruleSet = require(ruleSetPath);
+      } catch (e) {
+        logger.log('debug', 'ruleSet resolve error');
+        logger.log('debug', e);
+      }
+
+      const options = {
+        isProduction: command.prod,
+        ruleSet,
+        force: command.F
+      };
+
+      logger.log('debug', 'options', JSON.stringify(options, null, 2));
+
       let data: any = {};
       if (packagePath) {
         const packageJSON = require(resolvePackagePath(packagePath));
-        data = await validate_package(packageJSON);
+        data = await validate_package(packageJSON, options);
       } else if (command.npm) {
-        const matches = PACKAGE_NAME_REGEX.exec(command.npm);
-        if (matches) {
-          data = await validate_module(matches[1], matches[6]);
+        if (NPM_PACKAGE_NAME_PATTERN.test(command.npm)) {
+          data = await validate_module(command.npm, options);
         } else {
           throw new Error('invalid parameters use --help');
         }
@@ -35,6 +56,16 @@ commander
       }
 
       if (data.result) {
+        if (command.V || data.result.qualification === 'REJECTED') {
+          for (const evaluation of data.result.evaluations) {
+            console.log('\t -', evaluation.description);
+            for (const log of evaluation.logs) {
+              console.log('\t\t -', log.type, ' - ', log.message);
+              logger.log('debug', JSON.stringify(log.meta));
+            }
+          }
+        }
+
         switch (data.result.qualification) {
           case 'ACCEPTED':
             console.log(`corp-check validation accepted`);

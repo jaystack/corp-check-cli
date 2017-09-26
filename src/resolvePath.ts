@@ -17,3 +17,13 @@ export const resolvePackagePath = path => {
 
   return join(resolvedPath, 'package.json')
 };
+
+export const resolveRuleSetPath = (path, filename = 'corp-check-rules.json') => {
+  const resolvedPath = resolvePath(path);
+
+  if (/\.json$/.test(resolvedPath)) {
+    return resolvedPath;
+  }
+
+  return join(resolvedPath, filename)
+};
