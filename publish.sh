@@ -2,4 +2,4 @@
 
 npm version $1
 
-npm publish
+npm publish --tag dev
