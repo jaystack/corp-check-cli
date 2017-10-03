@@ -57,23 +57,44 @@ commander
 
       if (data.result) {
         if (command.V || data.result.qualification === 'REJECTED') {
-          const writeLogs = node => {
+          const logPrefix = logType => {
+            switch (logType) {
+              case 'ERROR':
+                return 'X';
+              case 'INFO':
+                return '√';
+              case 'WARNING':
+                return '!';
+              default:
+                break;
+            }
+          };
+
+          const writeLogs = (node, path = []) => {
+            const localPath = [ ...path, node.nodeName ];
             let isModuleNameDisplayed = false;
             for (const evaluation of node.evaluations) {
-              if (command.V || evaluation.logs.length) {
-                if (!isModuleNameDisplayed) console.log(`  ${node.nodeName}`);
+              const logs = evaluation.logs.filter(l => command.V || l.type === 'ERROR');
+              if (command.V || logs.length) {
+                if (!isModuleNameDisplayed) {
+                  const nodePath = localPath.join(' > ');
+                  console.log(nodePath);
+                  let separator = '';
+                  for (const i of nodePath) separator += '-';
+                  console.log(separator);
+                }
+
                 isModuleNameDisplayed = true;
-                if (evaluation.logs.length)
-                  console.log(`\t${evaluation.description}: ${evaluation.logs.map(l => l.message).join(', ')}`);
-                else console.log(`\t${evaluation.description}`);
-                for (const log of evaluation.logs) {
+                for (const log of logs) {
+                  console.log(`\t${logPrefix(log.type)} ${log.message}`);
                   logger.log('debug', JSON.stringify(log.meta));
                 }
               }
             }
 
+            console.log('');
             for (const dependency of node.dependencies) {
-              writeLogs(dependency);
+              writeLogs(dependency, localPath);
             }
           };
 
@@ -81,16 +102,17 @@ commander
         }
 
         switch (data.result.qualification) {
-          case 'ACCEPTED':
-            console.log(`corp-check validation accepted`);
-            console.log(`visit ${WEBSITEURL}/result?cid=${data.cid} for more info`);
-            return process.exit(0);
           case 'RECOMMENDED':
             console.log(`corp-check validation recommended`);
+            return process.exit(0);
+          case 'ACCEPTED':
+            console.log(`corp-check validation accepted`);
+            console.log(`For more information visit the ${WEBSITEURL}/result?cid=${data.cid} or use --verbose option`);
             return process.exit(0);
           case 'REJECTED':
           default:
             console.log(`corp-check validation rejected`);
+            console.log(`For more information visit the ${WEBSITEURL}/result?cid=${data.cid} or use --verbose option`);
             process.exit(1);
         }
       } else {
