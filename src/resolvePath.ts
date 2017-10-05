@@ -1,4 +1,5 @@
 import { join, normalize } from 'path';
+import { readFile } from 'fs';
 
 export const resolvePath = path => {
   if (/^\./.test(path)) {
@@ -8,22 +9,33 @@ export const resolvePath = path => {
   return path;
 };
 
-export const resolvePackagePath = path => {
+export const resolveFilePath = (path, filename) => {
   const resolvedPath = resolvePath(path);
 
   if (/\.json$/.test(resolvedPath)) {
     return resolvedPath;
   }
 
-  return join(resolvedPath, 'package.json')
+  return join(resolvedPath, filename);
+};
+
+export const resolvePackagePath = path => {
+  return resolveFilePath(path, 'package.json');
 };
 
 export const resolveRuleSetPath = (path, filename = 'corp-check-rules.json') => {
-  const resolvedPath = resolvePath(path);
+  return resolveFilePath(path, filename);
+};
 
-  if (/\.json$/.test(resolvedPath)) {
-    return resolvedPath;
-  }
-
-  return join(resolvedPath, filename)
+export const readfile = (path: string, file: string): Promise<string> => {
+  const filePath = resolveFilePath(path, file);
+  return new Promise((resolve, reject) => {
+    readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.log(file, err);
+        return resolve(null);
+      }
+      resolve(data);
+    });
+  });
 };
