@@ -48,7 +48,7 @@ commander
         if (command.packageLock) {
           const packageLockData = await readfile(projectFolder, 'package-lock.json');
           if (packageLockData) {
-            options.packageLock = JSON.parse(packageLockData);
+            options.packageLock = packageLockData;
           }
         }
         if (command.yarnLock) {
@@ -60,7 +60,7 @@ commander
 
         logger.log('debug', 'options', JSON.stringify(options, null, 2));
 
-        const packageJSON = require(resolvePackagePath(projectFolder));
+        const packageJSON = await readfile(projectFolder, 'package.json');
         data = await validate_package(packageJSON, options);
       } else if (command.npm) {
         logger.log('debug', 'options', JSON.stringify(options, null, 2));
