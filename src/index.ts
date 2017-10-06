@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { WEBSITEURL, NPM_PACKAGE_NAME_PATTERN } from './constants';
+import { getWebEndpoint, NPM_PACKAGE_NAME_PATTERN } from './constants';
 import * as commander from 'commander';
 const packageJson = require('../package.json');
 
@@ -120,7 +120,7 @@ commander
           writeLogs(data.result.rootEvaluation);
         }
 
-        console.log(`Visit the ${WEBSITEURL}/result?cid=${data.cid} or use --verbose option for detailed result`);
+        console.log(`Visit the ${getWebEndpoint()}/result?cid=${data.cid} or use --verbose option for detailed result`);
         switch (data.result.qualification) {
           case 'RECOMMENDED':
             console.log(`corp-check validation recommended`);

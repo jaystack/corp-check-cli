@@ -1,11 +1,11 @@
-import { CORPCHECK_ENDPOINT } from './constants';
+import { getApiEndpoint } from './constants';
 import * as request from 'request-promise-native';
 import { logger } from './logger';
 
 export const get = async (endpoint): Promise<any> => {
   logger.info('get', endpoint);
   return await request({
-    uri: `${CORPCHECK_ENDPOINT}${endpoint}`,
+    uri: `${getApiEndpoint()}${endpoint}`,
     json: true
   });
 };
@@ -14,7 +14,7 @@ export const post = async (endpoint, body): Promise<any> => {
   logger.info('post', endpoint, JSON.stringify(body, null, 2));
   return await request({
     method: 'POST',
-    uri: `${CORPCHECK_ENDPOINT}${endpoint}`,
+    uri: `${getApiEndpoint()}${endpoint}`,
     json: true,
     body
   });
@@ -23,7 +23,7 @@ export const post = async (endpoint, body): Promise<any> => {
 export const getEvaluation = async (cid): Promise<any> => {
   logger.info('getEvaluation', cid);
   return await request({
-    uri: `${CORPCHECK_ENDPOINT}/package?cid=${cid}`,
+    uri: `${getApiEndpoint()}/package?cid=${cid}`,
     json: true
   });
 };
