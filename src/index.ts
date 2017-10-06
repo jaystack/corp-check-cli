@@ -7,6 +7,7 @@ const packageJson = require('../package.json');
 import { validate_module, validate_package } from './validation';
 import { resolvePackagePath, resolveRuleSetPath, readfile } from './resolvePath';
 import { logger } from './logger';
+import { advanced } from './result';
 
 commander.version(packageJson.version);
 
@@ -75,50 +76,7 @@ commander
       }
 
       if (data.result) {
-        if (command.V || data.result.qualification === 'REJECTED') {
-          const logPrefix = logType => {
-            switch (logType) {
-              case 'ERROR':
-                return 'X';
-              case 'INFO':
-                return '√';
-              case 'WARNING':
-                return '!';
-              default:
-                break;
-            }
-          };
-
-          const writeLogs = (node, path = []) => {
-            const localPath = [ ...path, node.nodeName ];
-            let isModuleNameDisplayed = false;
-            for (const evaluation of node.evaluations) {
-              const logs = evaluation.logs.filter(l => command.V || l.type === 'ERROR');
-              if (command.V || logs.length) {
-                if (!isModuleNameDisplayed) {
-                  const nodePath = localPath.join(' > ');
-                  console.log(nodePath);
-                  let separator = '';
-                  for (const i of nodePath) separator += '-';
-                  console.log(separator);
-                }
-
-                isModuleNameDisplayed = true;
-                for (const log of logs) {
-                  console.log(`\t${logPrefix(log.type)} ${log.message}`);
-                  logger.log('debug', JSON.stringify(log.meta));
-                }
-              }
-            }
-
-            if (isModuleNameDisplayed) console.log('');
-            for (const dependency of node.dependencies) {
-              writeLogs(dependency, localPath);
-            }
-          };
-
-          writeLogs(data.result.rootEvaluation);
-        }
+        advanced(data, command);
 
         console.log(`Visit the ${getWebEndpoint()}/result?cid=${data.cid} or use --verbose option for detailed result`);
         switch (data.result.qualification) {
