@@ -134,7 +134,9 @@ commander
             process.exit(1);
         }
       } else {
-        console.log(`corp-check validation failed: no result`);
+        console.log(`Visit the ${getWebEndpoint()}/result?cid=${data.cid} for more info`);
+        console.log(`corp-check validation has no result`);
+        console.log(`${data.state.type}`);
         process.exit(1);
       }
     } catch (e) {
