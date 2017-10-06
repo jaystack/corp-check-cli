@@ -138,7 +138,7 @@ commander
         process.exit(1);
       }
     } catch (e) {
-      logger.error(e);
+      logger.error(e.message || e);
       process.exit(1);
     }
   });
