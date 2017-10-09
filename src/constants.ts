@@ -3,12 +3,12 @@ export const WEBSITEURL = 'http://corp-check.jaystack.com';
 export const getApiEndpoint = () => {
   switch (process.env.ENV) {
     case 'dev':
-      return 'https://nriy2mztj9.execute-api.eu-central-1.amazonaws.com/dev';
+      return 'https://api.corp-check.dev.jaystack.com';
     case 'stage':
-      return 'https://ol8w3589yc.execute-api.eu-central-1.amazonaws.com/stage';
+      return 'https://api.corp-check.stage.jaystack.com';
     case 'prod':
     default:
-      return 'https://6r92ru84n2.execute-api.eu-central-1.amazonaws.com/prod';
+      return 'https://api.corp-check.jaystack.com';
   }
 };
 
