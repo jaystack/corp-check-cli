@@ -30,7 +30,7 @@ commander
       try {
         const ruleSetPath = resolveRuleSetPath(command.ruleSet || projectFolder || '.');
         logger.log('debug', ruleSetPath);
-        ruleSet = require(ruleSetPath);
+        ruleSet = JSON.stringify(require(ruleSetPath));
       } catch (e) {
         logger.log('debug', 'ruleSet resolve error');
         logger.log('debug', e);
