@@ -3,7 +3,7 @@ import * as request from 'request-promise-native';
 import { logger } from './logger';
 
 export const get = async (endpoint): Promise<any> => {
-  logger.info('get', endpoint);
+  logger.debug('get', endpoint);
   return await request({
     uri: `${getApiEndpoint()}${endpoint}`,
     json: true
@@ -11,7 +11,7 @@ export const get = async (endpoint): Promise<any> => {
 };
 
 export const post = async (endpoint, body): Promise<any> => {
-  logger.info('post', endpoint, JSON.stringify(body, null, 2));
+  logger.debug('post', endpoint, JSON.stringify(body, null, 2));
   return await request({
     method: 'POST',
     uri: `${getApiEndpoint()}${endpoint}`,
@@ -20,8 +20,8 @@ export const post = async (endpoint, body): Promise<any> => {
   });
 };
 
-export const getEvaluation = async (cid): Promise<any> => {
-  logger.info('getEvaluation', cid);
+export const getEvaluation = async (cid, logCid = false): Promise<any> => {
+  logCid && logger.info('cid -', cid);
   return await request({
     uri: `${getApiEndpoint()}/package?cid=${cid}`,
     json: true
@@ -30,10 +30,15 @@ export const getEvaluation = async (cid): Promise<any> => {
 
 export const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 export const waitToEvaluation = async (cid): Promise<any> => {
-  let result: any = await getEvaluation(cid);
+  let result: any = await getEvaluation(cid, true);
   logger.debug('waitToEvaluation', JSON.stringify(result, null, 4));
+  var lastMessage = '';
   while (result && result.state.type && result.state.type === 'PENDING') {
-    await sleep(3000);
+    if (result.state.message && lastMessage !== result.state.message) {
+      logger.info(result.state.message);
+      lastMessage = result.state.message;
+    }
+    await sleep(1500);
     result = await getEvaluation(cid);
     logger.debug('waitToEvaluation', JSON.stringify(result, null, 4));
   }
