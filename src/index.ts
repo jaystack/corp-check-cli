@@ -93,14 +93,14 @@ export const actionHandler = async (projectFolder, npmModule, command) => {
 commander
   .version(packageJson.version)
   .option('--force, -f', 'force validation')
-  .option('--verbose, -v', 'force validation')
+  .option('--verbose, -v', 'list all warnings')
   .option('--rule-set <ruleSetJson>', 'validation rule set, default: ./corp-check-rules.json')
   .option('--log-level <logLevel>', 'winston log level, default: warn');
 
 commander
   .arguments('<projectFolder>')
   .description('validate your project folder')
-  .option('--prod', 'production build')
+  .option('--prod', 'skip devDependencies')
   .option('--package-lock', 'use package-lock.json file')
   .option('--yarn-lock', 'use yarn.lock file')
   .action(async (projectFolder, command) => {
