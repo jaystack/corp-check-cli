@@ -47,3 +47,4 @@ __test/**/*
 
 typings
 @types
+tsconfig.json
