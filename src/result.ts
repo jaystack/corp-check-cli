@@ -1,54 +1,7 @@
-import { logger } from './logger';
-import { summary } from './summary';
+import { getListing } from 'corp-check-core';
 
-const logPrefix = logType => {
-  switch (logType) {
-    case 'ERROR':
-      return 'X';
-    case 'INFO':
-      return '√';
-    case 'WARNING':
-      return '!';
-    default:
-      break;
-  }
-};
-
-export const simple = (data, command) => {
-  const writeLogs = (node, path = []) => {
-    const localPath = [ ...path, node.nodeName ];
-    let isModuleNameDisplayed = false;
-    for (const evaluation of node.evaluations) {
-      const logs = evaluation.logs.filter(l => command.V || l.type === 'ERROR');
-      if (command.V || logs.length) {
-        if (!isModuleNameDisplayed) {
-          const nodePath = localPath.join(' > ');
-          console.log(nodePath);
-          let separator = '';
-          for (const i of nodePath) separator += '-';
-          console.log(separator);
-        }
-
-        isModuleNameDisplayed = true;
-        for (const log of logs) {
-          console.log(`\t${logPrefix(log.type)} ${log.message}`);
-          logger.log('debug', JSON.stringify(log.meta));
-        }
-      }
-    }
-
-    if (isModuleNameDisplayed) console.log('');
-    for (const dependency of node.dependencies) {
-      writeLogs(dependency, localPath);
-    }
-  };
-  if (command.V || data.result.qualification === 'REJECTED') {
-    writeLogs(data.result.rootEvaluation);
-  }
-};
-
-export const advanced = (data, command) => {
-  const result = summary(data.result.rootEvaluation);
+export const displayResult = (data, command) => {
+  const result = getListing(data.result.rootEvaluation)
 
   const writeItems = items => {
     for (let i = 0; i < items.length; i++) {

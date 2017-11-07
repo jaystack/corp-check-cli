@@ -23,5 +23,3 @@ export const getWebEndpoint = () => {
       return 'http://corp-check.jaystack.com';
   }
 };
-
-export const NPM_PACKAGE_NAME_PATTERN = /^((@([^@]+)\/)?([^@]+))(@(.*))?$/;

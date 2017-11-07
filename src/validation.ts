@@ -38,7 +38,7 @@ export const waitToEvaluation = async (cid): Promise<any> => {
       logger.info(result.state.message);
       lastMessage = result.state.message;
     }
-    await sleep(1500);
+    await sleep(process.env.WAIT_TO_EVALUATION_INTERVAL || 1500);
     result = await getEvaluation(cid);
     logger.debug('waitToEvaluation', JSON.stringify(result, null, 4));
   }
