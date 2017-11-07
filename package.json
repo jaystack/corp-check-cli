@@ -1,6 +1,6 @@
 {
   "name": "corp-check-cli",
-  "version": "0.0.48",
+  "version": "0.0.51",
   "description": "",
   "scripts": {
     "build": "node_modules/.bin/tsc",
