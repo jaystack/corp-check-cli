@@ -1,5 +1,3 @@
-export const WEBSITEURL = 'http://corp-check.jaystack.com';
-
 export const getApiEndpoint = () => {
   switch (process.env.ENV) {
     case 'dev':
@@ -8,7 +6,7 @@ export const getApiEndpoint = () => {
       return 'https://api.corp-check.stage.jaystack.com';
     case 'prod':
     default:
-      return 'https://api.corp-check.jaystack.com';
+      return 'https://api.corp-check.corpjs.com';
   }
 };
 
@@ -20,6 +18,6 @@ export const getWebEndpoint = () => {
       return 'http://corp-check.stage.jaystack.com';
     case 'prod':
     default:
-      return 'http://corp-check.jaystack.com';
+      return 'https://corp-check.corpjs.com';
   }
 };

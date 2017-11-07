@@ -83,7 +83,7 @@ describe('cli', async () => {
       await actionHandler(null, 'packageName', {});
 
       const packageCalls = {
-        uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+        uri: 'https://api.corp-check.corpjs.com/package?cid=1',
         json: true
       };
       expect(exit).toHaveBeenCalledWith(0);
@@ -91,7 +91,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -142,7 +142,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -156,7 +156,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -169,7 +169,7 @@ describe('cli', async () => {
         [ '\tWarning count: ', 0 ],
         [ '\t----------------------' ],
         [ '' ],
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 or use --verbose option for detailed result' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 or use --verbose option for detailed result' ],
         [ 'corp-check validation recommended' ]
       ]);
     });
@@ -207,7 +207,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -221,7 +221,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -237,7 +237,7 @@ describe('cli', async () => {
         [ '\tWarning count: ', 1 ],
         [ '\t----------------------' ],
         [ '' ],
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 or use --verbose option for detailed result' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 or use --verbose option for detailed result' ],
         [ 'corp-check validation accepted' ]
       ]);
     });
@@ -275,7 +275,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -289,7 +289,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -305,7 +305,7 @@ describe('cli', async () => {
         [ '\tWarning count: ', 0 ],
         [ '\t----------------------' ],
         [ '' ],
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 or use --verbose option for detailed result' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 or use --verbose option for detailed result' ],
         [ 'corp-check validation rejected' ]
       ]);
     });
@@ -330,7 +330,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -344,14 +344,14 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
       ]);
 
       expect(consoleLog.mock.calls).toEqual([
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 for more info' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 for more info' ],
         [ 'corp-check validation has no result' ],
         [ 'FAILED' ]
       ]);
@@ -386,7 +386,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -400,7 +400,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -456,7 +456,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -470,7 +470,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -496,7 +496,7 @@ describe('cli', async () => {
         [ '\tWarning count: ', 11 ],
         [ '\t----------------------' ],
         [ '' ],
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 or use --verbose option for detailed result' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 or use --verbose option for detailed result' ],
         [ 'corp-check validation recommended' ]
       ]);
     });
@@ -549,7 +549,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -563,7 +563,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -589,7 +589,7 @@ describe('cli', async () => {
         [ '\tWarning count: ', 11 ],
         [ '\t----------------------' ],
         [ '' ],
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 or use --verbose option for detailed result' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 or use --verbose option for detailed result' ],
         [ 'corp-check validation recommended' ]
       ]);
     });
@@ -626,7 +626,7 @@ describe('cli', async () => {
       await actionHandler(null, 'packageName', { logLevel: 'info' });
 
       const packageCalls = {
-        uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+        uri: 'https://api.corp-check.corpjs.com/package?cid=1',
         json: true
       };
       expect(exit).toHaveBeenCalledWith(0);
@@ -634,7 +634,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -661,7 +661,7 @@ describe('cli', async () => {
         [ '\tWarning count: ', 0 ],
         [ '\t----------------------' ],
         [ '' ],
-        [ 'Visit the http://corp-check.jaystack.com/result?cid=1 or use --verbose option for detailed result' ],
+        [ 'Visit the https://corp-check.corpjs.com/result?cid=1 or use --verbose option for detailed result' ],
         [ 'corp-check validation recommended' ]
       ]);
 
@@ -700,7 +700,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -714,7 +714,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -751,7 +751,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageName: 'packageName',
@@ -765,7 +765,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -822,7 +822,7 @@ describe('cli', async () => {
       await actionHandler('path_to_project', null, {});
 
       const packageCalls = {
-        uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+        uri: 'https://api.corp-check.corpjs.com/package?cid=1',
         json: true
       };
       expect(resolvePath.readfile).lastCalledWith('path_to_project', 'package.json');
@@ -831,7 +831,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -885,7 +885,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -899,7 +899,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -938,7 +938,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -952,7 +952,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -991,7 +991,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1005,7 +1005,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1035,7 +1035,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1049,7 +1049,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1088,7 +1088,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1102,7 +1102,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1141,7 +1141,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1155,7 +1155,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1194,7 +1194,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1208,7 +1208,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1247,7 +1247,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1261,7 +1261,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1305,7 +1305,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1319,7 +1319,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1363,7 +1363,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1377,7 +1377,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1419,7 +1419,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1433,7 +1433,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
@@ -1475,7 +1475,7 @@ describe('cli', async () => {
         [
           {
             method: 'POST',
-            uri: 'https://api.corp-check.jaystack.com/validation',
+            uri: 'https://api.corp-check.corpjs.com/validation',
             json: true,
             body: {
               packageJSON: '{"name:":"packageName","version":"version"}',
@@ -1489,7 +1489,7 @@ describe('cli', async () => {
         ],
         [
           {
-            uri: 'https://api.corp-check.jaystack.com/package?cid=1',
+            uri: 'https://api.corp-check.corpjs.com/package?cid=1',
             json: true
           }
         ]
