@@ -27,6 +27,5 @@ corp-check .
     --log-level <logLevel>    winston log level, default: warn
     --prod                    skip devDependencies
     --package-lock            use package-lock.json file
-    --yarn-lock               use yarn.lock file
     -h, --help                output usage information
 ```
