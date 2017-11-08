@@ -1,5 +1,5 @@
-# CorpCheck CLI
-If you want to use CorpCheck for more than just as a web tool to check packages for risks, you can integrate the CLI module into your build and deployment process to actually prohibit the deployment of risky packages. The CLI will use the ruleset you define and stop if it encounters a viral license, an unreleased package or an abandoned package will tons of open issues.
+# Corp-Check CLI
+If you want to use Corp-Check for more than just as a web tool to check packages for risks, you can integrate the CLI module into your build and deployment process to actually prohibit the deployment of risky packages. The CLI will use the ruleset you define and stop if it encounters a viral license, an unreleased package or an abandoned package will tons of open issues.
 
 # Install
 install to global using npm:
