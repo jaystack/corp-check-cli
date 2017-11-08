@@ -59,3 +59,6 @@ You can read more about custom rules [here](https://corp-check.corpjs.com/npm)
     --package-lock            use package-lock.json file
     -h, --help                output usage information
 ```
+
+## Notes
+Keen-eyed developers will realize that Corp-Check CLI does not fall into the "recommended" category using our own checks, due to some dependencies yielding warnings. Thankfully, it happens because of version checks, not licensing ones. This clearly show that while our open-source world is far from being ideal, each and every one of us make what we can to establish a transparent and clear ecosystem. To avoid any problems, Corp-Check CLI still passes the check when you use corp-check-cli as a dependency.
