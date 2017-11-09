@@ -12,19 +12,19 @@ npm install --save-dev corp-check-cli
 ```
 # Usage
 ## Validate npm package
-You can identify risks in published npm packages with `corp-check npm <package>` CLI command. And you will know how good that package for you.
+You can identify risks in published npm packages with the `corp-check npm <package>` CLI command. It will let you know how risky the package it is for your project.
 ```sh
 corp-check npm express
 ```
 
 ## Validate project
-You can create a report about your product with `corp-check <path-to-local-source>`. Also you can use your `package-lock.json` with the `--package-lock` option. And with `--prod` argument you can skip the `devDependencies` from validation
+You can create a report about your product (using your package.json) with `corp-check <path-to-local-source>`. Also you can use your `package-lock.json` with the `--package-lock` option. Using the `--prod` argument will exclude the `devDependencies` from the validation
 ```sh
 corp-check . --package-lock --prod
 ```
 
 ## Npm script
-Define script for corp-check project validation
+Define your script for corp-check project validation
 ```json
 {
     "scripts": {
@@ -32,7 +32,7 @@ Define script for corp-check project validation
     }
 }
 ```
-and you can run by npm
+and you can run with npm
 ```sh
 npm run corp-check
 ```
@@ -42,7 +42,7 @@ Just create a `corp-check-rules.json` in your project root and you can override 
 ```sh
 corp-check . --rule-set ./my-rules.json
 ```
-If you want to validate an npm package with your custom rule you have to pass the `--rule-set` option
+If you want to validate an npm package using your custom rules, you have to enable the `--rule-set` option
 ```sh
 corp-check npm express --rule-set ./my-rules.json
 ```
